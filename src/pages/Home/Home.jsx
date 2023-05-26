@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getPopularFilms from '../../API/filmsAPI';
+import { getPopularFilms } from '../../API/filmsAPI';
 import FilmCard from '../../components/FilmCard/FilmCard';
 import css from './Home.module.css';
 
