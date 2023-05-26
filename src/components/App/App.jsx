@@ -1,12 +1,22 @@
-import css from './App.module.css';
+import { Routes, Route } from 'react-router-dom';
+import Layout from '../Layout/Layout';
+
+import Home from './../../pages/Home/Home';
+import Movies from './../../pages/Movies/Movies';
 
 function App() {
   return (
     <>
-      <header className={css.block}>
-        <p className={css.textMain}>REACT APP TEMPLATE</p>
-        <p className={css.textSecondary}>USE IT</p>
-      </header>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<div>MOVIE ID</div>}>
+            <Route path="cast" />
+            <Route path="reviews" />
+          </Route>
+        </Route>
+      </Routes>
     </>
   );
 }
