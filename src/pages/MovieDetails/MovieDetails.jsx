@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFilmById } from '../../API/filmsAPI';
 
-import css from './movieDetails.module.css';
+// import css from './movieDetails.module.css';
 
 const MovieDetails = () => {
   const params = useParams();
