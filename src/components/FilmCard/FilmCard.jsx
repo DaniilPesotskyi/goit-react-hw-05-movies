@@ -1,11 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import css from './FilmCard.module.css';
 
-const FilmCard = ({id}) => {
+const FilmCard = ({ id, poster }) => {
   return (
-    <div>
-      <p>FILM</p>
-      <Link to={`movies/${id}`}>Link</Link>
-    </div>
+    <li className={css.filmCardWrap}>
+      <img
+        className={css.posterImg}
+        src={`https://image.tmdb.org/t/p/original/${poster}`}
+        alt=""
+      />
+      <div className={css.overlay}>
+        <Link className={css.filmCardLink} to={`movies/${id}`}>
+          DETAILS
+        </Link>
+      </div>
+    </li>
   );
 };
 

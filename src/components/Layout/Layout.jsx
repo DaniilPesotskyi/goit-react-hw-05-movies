@@ -16,7 +16,7 @@ const Layout = () => {
           </ul>
         </nav>
       </header>
-      <main>
+      <main className={css.main}>
         <Outlet />
       </main>
       <footer></footer>
