@@ -4,19 +4,23 @@ import { getFilmById } from '../../API/filmsAPI';
 
 import css from './movieDetails.module.css';
 import GoBackButton from '../../components/GoBackButton/GoBackButton';
+import Loader from '../../components/Loader/Loader';
 
 const MovieDetails = () => {
   const params = useParams();
   const [filmData, setFilmData] = useState({});
+  const [inLoad, setInLoad] = useState(false)
 
   useEffect(() => {
     const getAndSetFilmData = async () => {
       try {
+        setInLoad(true)
         const data = await getFilmById(params.movieId);
         setFilmData(data);
-        console.log(data);
+        setInLoad(false)
       } catch (error) {
         console.error(error);
+        setInLoad(false)
       }
     };
 
@@ -25,6 +29,7 @@ const MovieDetails = () => {
 
   return (
     <>
+    {inLoad && <Loader />}
     <GoBackButton />
       <div className={css.filmDataWrap}>
         <img
