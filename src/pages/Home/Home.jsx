@@ -21,7 +21,7 @@ const Home = () => {
       <h1 className={css.pageTitle}>POPULAR FILMS</h1>
       <ul className={css.filmList}>
         {films.map(({ id, poster_path }) => (
-          <FilmCard key={id} id={id} poster={poster_path} />
+          <FilmCard key={id} id={id} poster={poster_path} path='movies/'/>
         ))}
       </ul>
     </>

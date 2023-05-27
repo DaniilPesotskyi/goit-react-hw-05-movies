@@ -45,3 +45,12 @@
         outline: 2px solid #4b0000;
     }
 }
+
+.filmList {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+

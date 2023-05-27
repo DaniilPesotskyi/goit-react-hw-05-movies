@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import css from './Movies.module.css';
 import { useEffect, useState } from 'react';
 import { getFilmByQuery } from '../../API/filmsAPI';
+import FilmCard from '../../components/FilmCard/FilmCard';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,8 +18,8 @@ const Movies = () => {
   useEffect(() => {
     const getAndSetFilms = async () => {
       const filmsData = await getFilmByQuery(query);
-      console.log(filmsData)
-      setMovies([...filmsData.results]);
+      console.log(filmsData.results)
+      setMovies(filmsData.results);
     };
     getAndSetFilms();
   }, [query]);
@@ -36,11 +37,9 @@ const Movies = () => {
         />
       </div>
 
-      <ul>
-        {movies && movies.map(({id}) => (
-            <li key={id}>
-                <p>{id}</p>
-            </li>
+      <ul className={css.filmList}>
+        {movies && movies.map(({id, poster_path}) => (
+            <FilmCard key={id} id={id} poster={poster_path}/>
         ))}
       </ul>
     </>

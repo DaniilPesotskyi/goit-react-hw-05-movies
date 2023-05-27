@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import css from './FilmCard.module.css';
 
-const FilmCard = ({ id, poster }) => {
+const FilmCard = ({ id, poster, path='' }) => {
   return (
     <li className={css.filmCardWrap}>
       <img
@@ -10,7 +10,7 @@ const FilmCard = ({ id, poster }) => {
         alt=""
       />
       <div className={css.overlay}>
-        <Link className={css.filmCardLink} to={`movies/${id}`}>
+        <Link className={css.filmCardLink} to={`${path}${id}`}>
           DETAILS
         </Link>
       </div>
