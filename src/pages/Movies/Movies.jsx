@@ -1,17 +1,16 @@
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import css from './Movies.module.css';
 import { useEffect, useState } from 'react';
 import { getFilmByQuery } from '../../API/filmsAPI';
 import FilmCard from '../../components/FilmCard/FilmCard';
 import Loader from '../../components/Loader/Loader';
 
-
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
-  const [inLoad, setInLoad] = useState(false)
+  const [inLoad, setInLoad] = useState(false);
   const query = searchParams.get('query') ? searchParams.get('query') : '';
-
+  const location = useLocation()
   const updateQueryString = e => {
     const params = e.target.value !== '' ? { query: e.target.value } : {};
 
@@ -20,10 +19,15 @@ const Movies = () => {
 
   useEffect(() => {
     const getAndSetFilms = async () => {
-      setInLoad(true)
-      const filmsData = await getFilmByQuery(query);
-      setMovies(filmsData.results);
-      setInLoad(false)
+      try {
+        setInLoad(true);
+        const filmsData = await getFilmByQuery(query);
+        setMovies(filmsData.results);
+        setInLoad(false);
+      } catch (error) {
+        console.log(error);
+        setInLoad(false);
+      }
     };
     getAndSetFilms();
   }, [query]);
@@ -42,9 +46,10 @@ const Movies = () => {
       </div>
       {inLoad && <Loader />}
       <ul className={css.filmList}>
-        {movies && movies.map(({id, poster_path}) => (
-            <FilmCard key={id} id={id} poster={poster_path}/>
-        ))}
+        {movies &&
+          movies.map(({ id, poster_path }) => (
+            <FilmCard key={id} id={id} poster={poster_path} from={{from: location}}/>
+          ))}
       </ul>
     </>
   );

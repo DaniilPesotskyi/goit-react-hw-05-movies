@@ -100,3 +100,25 @@
     }
     
 }
+
+.button {
+    display: block;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    font-size: 17px;
+    line-height: 1.5;
+    color: #FFFFFF;
+
+    background-color: transparent;
+    border: 0;
+
+    cursor: pointer;
+
+    transition: color 250ms;
+
+    &:hover {
+        color: #e08686;
+    }
+}

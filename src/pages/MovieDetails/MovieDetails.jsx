@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getFilmById } from '../../API/filmsAPI';
 
 import css from './movieDetails.module.css';
-import GoBackButton from '../../components/GoBackButton/GoBackButton';
 import Loader from '../../components/Loader/Loader';
 
 const MovieDetails = () => {
   const params = useParams();
   const [filmData, setFilmData] = useState({});
   const [inLoad, setInLoad] = useState(false)
+  const location = useLocation()
+  const backLinkLocation = useRef(location.state?.from ?? '/')
 
   useEffect(() => {
     const getAndSetFilmData = async () => {
@@ -30,7 +31,7 @@ const MovieDetails = () => {
   return (
     <>
     {inLoad && <Loader />}
-    <GoBackButton />
+    <Link to={backLinkLocation.current} className={css.button}>{'< GO BACK'}</Link>
       <div className={css.filmDataWrap}>
         <img
           className={css.filmPoster}

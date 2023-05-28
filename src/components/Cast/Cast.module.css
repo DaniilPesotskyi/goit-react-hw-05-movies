@@ -16,3 +16,14 @@
     height: 300px;
     border-radius: 10px;
 }
+
+.nothingText {
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    font-size: 48px;
+    line-height: 1.5;
+    color: #FFFFFF;
+
+    text-align: center;
+}
